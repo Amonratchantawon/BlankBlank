@@ -137,5 +137,5 @@ exports.productByCategory = function (req, res, next, id) {
 };
 
 exports.productByCate = function (req, res) {
-  res.jsonp();
+  res.jsonp(req.product);
 };

@@ -8,11 +8,11 @@ var productsPolicy = require('../policies/products.server.policy'),
 
 module.exports = function(app) {
   // Products Routes
-  app.route('/api/products')//.all(productsPolicy.isAllowed)
+  app.route('/api/products').all(productsPolicy.isAllowed)
     .get(products.list)
     .post(products.create);
 
-    app.route('/api/productsbycate/:productBycate')//.all(productsPolicy.isAllowed)
+    app.route('/api/productsbycate/:productBycate').all(productsPolicy.isAllowed)
     .get(products.productByCate);
 
   app.route('/api/products/:productId').all(productsPolicy.isAllowed)

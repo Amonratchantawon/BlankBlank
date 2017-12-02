@@ -20,12 +20,18 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/products/:productId',
       permissions: '*'
+    }, {
+      resources: '/api/productsbycate/:productBycate',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
       resources: '/api/products',
       permissions: ['get', 'post']
+    }, {
+      resources: '/api/productsbycate/:productBycate',
+      permissions: '*'
     }, {
       resources: '/api/products/:productId',
       permissions: ['get']
@@ -35,6 +41,9 @@ exports.invokeRolesPolicies = function () {
     allows: [{
       resources: '/api/products',
       permissions: ['get']
+    }, {
+      resources: '/api/productsbycate/:productBycate',
+      permissions: '*'
     }, {
       resources: '/api/products/:productId',
       permissions: ['get']

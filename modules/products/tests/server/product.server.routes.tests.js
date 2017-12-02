@@ -54,7 +54,7 @@ describe('Product CRUD tests', function () {
         name: 'Product name',
         image: 'img',
         size: [{ name: 'L', price: 60 }],
-        // category:'ร้อน',
+        category: 'ice',
       };
 
       done();
@@ -104,6 +104,50 @@ describe('Product CRUD tests', function () {
 
 
                 // Call the assertion callback
+                done();
+              });
+          });
+      });
+  });
+
+  it('should be able to get a Product By Cate', function (done) {
+
+    // Get the userId
+    let categoryT = 'ice';
+
+    agent.post('/api/auth/signin')
+      .send(credentials)
+      .expect(200)
+      .end(function (signinErr, signinRes) {
+        // Handle signin error
+        if (signinErr) {
+          return done(signinErr);
+        }
+
+        agent.post('/api/products')
+          .send(product)
+          .expect(200)
+          .end(function (productSaveErr, productSaveRes) {
+            // Handle Product save error
+            if (productSaveErr) {
+              return done(productSaveErr);
+            }
+
+            // Get a list of Products
+            agent.get('/api/productsbycate/' + categoryT)
+              .end(function (productsGetErr, productsGetRes) {
+                // Handle Products save error
+                if (productsGetErr) {
+                  return done(productsGetErr);
+                }
+
+                // Get Products list
+                var products = productsGetRes.body;
+
+                // Set assertions
+                console.log(JSON.stringify(products));
+                (products.length).should.match(1);
+
                 done();
               });
           });

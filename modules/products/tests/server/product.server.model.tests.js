@@ -31,6 +31,7 @@ describe('Product Model Unit Tests:', function() {
     user.save(function() {
       product = new Product({
         name: 'Product Name',
+        
         user: user
       });
 
@@ -55,6 +56,7 @@ describe('Product Model Unit Tests:', function() {
         done();
       });
     });
+    
   });
 
   afterEach(function(done) {

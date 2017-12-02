@@ -117,13 +117,8 @@ exports.productByID = function (req, res, next, id) {
 };
 
 
-exports.productByCategory = function (req, res, next, id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send({
-      message: 'Product is invalid'
-    });
-  }
-  Product.find({ category: id }).populate('user', 'displayName').exec(function (err, product) {
+exports.productByCategory = function (req, res, next, cate) {
+  Product.find({ category: cate }).populate('user', 'displayName').exec(function (err, product) {
     if (err) {
       return next(err);
     } else if (!product) {

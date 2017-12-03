@@ -32,6 +32,9 @@ var ProductSchema = new Schema({
   category: {
     type: String
   },
+  detail:{
+    type:String
+  },
   created: {
     type: Date,
     default: Date.now

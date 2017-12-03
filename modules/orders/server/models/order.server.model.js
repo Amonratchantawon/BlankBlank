@@ -10,11 +10,9 @@ var mongoose = require('mongoose'),
  * Order Schema
  */
 var OrderSchema = new Schema({
-  name: {
+  table: {
     type: String,
-    default: '',
-    required: 'Please fill Order name',
-    trim: true
+
   },
   created: {
     type: Date,

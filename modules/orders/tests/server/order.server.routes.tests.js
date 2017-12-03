@@ -51,7 +51,7 @@ describe('Order CRUD tests', function () {
     // Save a user to the test db and create new Order
     user.save(function () {
       order = {
-        name: 'Order name'
+        table: 'Order name'
       };
 
       done();
@@ -94,7 +94,7 @@ describe('Order CRUD tests', function () {
 
                 // Set assertions
                 (orders[0].user._id).should.equal(userId);
-                (orders[0].name).should.match('Order name');
+                (orders[0].table).should.match('Order name');
 
                 // Call the assertion callback
                 done();
@@ -113,35 +113,7 @@ describe('Order CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an Order if no name is provided', function (done) {
-    // Invalidate name field
-    order.name = '';
 
-    agent.post('/api/auth/signin')
-      .send(credentials)
-      .expect(200)
-      .end(function (signinErr, signinRes) {
-        // Handle signin error
-        if (signinErr) {
-          return done(signinErr);
-        }
-
-        // Get the userId
-        var userId = user.id;
-
-        // Save a new Order
-        agent.post('/api/orders')
-          .send(order)
-          .expect(400)
-          .end(function (orderSaveErr, orderSaveRes) {
-            // Set message assertion
-            (orderSaveRes.body.message).should.match('Please fill Order name');
-
-            // Handle Order save error
-            done(orderSaveErr);
-          });
-      });
-  });
 
   it('should be able to update an Order if signed in', function (done) {
     agent.post('/api/auth/signin')
@@ -167,7 +139,7 @@ describe('Order CRUD tests', function () {
             }
 
             // Update Order name
-            order.name = 'WHY YOU GOTTA BE SO MEAN?';
+            order.table = 'WHY YOU GOTTA BE SO MEAN?';
 
             // Update an existing Order
             agent.put('/api/orders/' + orderSaveRes.body._id)
@@ -181,7 +153,7 @@ describe('Order CRUD tests', function () {
 
                 // Set assertions
                 (orderUpdateRes.body._id).should.equal(orderSaveRes.body._id);
-                (orderUpdateRes.body.name).should.match('WHY YOU GOTTA BE SO MEAN?');
+                (orderUpdateRes.body.table).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                 // Call the assertion callback
                 done();
@@ -218,7 +190,7 @@ describe('Order CRUD tests', function () {
       request(app).get('/api/orders/' + orderObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('name', order.name);
+          res.body.should.be.instanceof(Object).and.have.property('table', order.table);
 
           // Call the assertion callback
           done();
@@ -363,7 +335,7 @@ describe('Order CRUD tests', function () {
               }
 
               // Set assertions on new Order
-              (orderSaveRes.body.name).should.equal(order.name);
+              (orderSaveRes.body.table).should.equal(order.table);
               should.exist(orderSaveRes.body.user);
               should.equal(orderSaveRes.body.user._id, orphanId);
 
@@ -390,7 +362,7 @@ describe('Order CRUD tests', function () {
 
                         // Set assertions
                         (orderInfoRes.body._id).should.equal(orderSaveRes.body._id);
-                        (orderInfoRes.body.name).should.equal(order.name);
+                        (orderInfoRes.body.table).should.equal(order.table);
                         should.equal(orderInfoRes.body.user, undefined);
 
                         // Call the assertion callback

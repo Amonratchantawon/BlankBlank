@@ -12,13 +12,14 @@ var mongoose = require('mongoose'),
 var OrderSchema = new Schema({
   table: {
     type: String,
-    items: {
-      type: [{
-        name: {
-          type: String
-        }
-      }]
-    }
+
+  },
+  items: {
+    type: [{
+      name: {
+        type: String
+      }
+    }]
   },
   created: {
     type: Date,

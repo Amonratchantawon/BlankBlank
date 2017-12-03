@@ -106,7 +106,7 @@ describe('Order CRUD tests', function () {
                 // Set assertions
                 (orders[0].user._id).should.equal(userId);
                 (orders[0].table).should.match('Order name');
-                // (orders[0].items[0].name).should.match('Ice Cocoa');
+                (orders[0].items[0].name).should.match('Ice Cocoa');
                 // (orders[0].items[0].image).should.match('https://www.img.in.th/images/864ed11d4fc1087987b8096154c8163f.jpg');
                 // (orders[0].items[0].size).should.match('L');
                 // (orders[0].items[0].price).should.match(60);

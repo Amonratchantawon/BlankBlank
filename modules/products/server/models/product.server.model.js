@@ -16,6 +16,9 @@ var ProductSchema = new Schema({
     required: 'Please fill Product name',
     trim: true
   },
+  seller:{
+    type:String
+  },
   image: {
     type: String
   },

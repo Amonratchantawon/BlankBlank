@@ -18,8 +18,29 @@ var OrderSchema = new Schema({
     type: [{
       name: {
         type: String
+      },
+      image: {
+        type: String
+      },
+      size: {
+        type: String
+      },
+      price: {
+        type: Number
+      },
+      qty: {
+        type: Number
+      },
+      category: {
+        type: String
+      },
+      amount: {
+        type: Number
       }
     }]
+  },
+  amount: {
+    type: Number
   },
   created: {
     type: Date,

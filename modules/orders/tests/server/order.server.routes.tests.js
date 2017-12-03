@@ -107,13 +107,13 @@ describe('Order CRUD tests', function () {
                 (orders[0].user._id).should.equal(userId);
                 (orders[0].table).should.match('Order name');
                 (orders[0].items[0].name).should.match('Ice Cocoa');
-                // (orders[0].items[0].image).should.match('https://www.img.in.th/images/864ed11d4fc1087987b8096154c8163f.jpg');
-                // (orders[0].items[0].size).should.match('L');
-                // (orders[0].items[0].price).should.match(60);
-                // (orders[0].items[0].qty).should.match(1);
-                // (orders[0].items[0].category).should.match('ice');
-                // (orders[0].items[0].amount).should.match(60);
-                // (orders[0].amount).should.match(60);
+                (orders[0].items[0].image).should.match('https://www.img.in.th/images/864ed11d4fc1087987b8096154c8163f.jpg');
+                (orders[0].items[0].size).should.match('L');
+                (orders[0].items[0].price).should.match(60);
+                (orders[0].items[0].qty).should.match(1);
+                (orders[0].items[0].category).should.match('ice');
+                (orders[0].items[0].amount).should.match(60);
+                (orders[0].amount).should.match(60);
                 
                 
 
